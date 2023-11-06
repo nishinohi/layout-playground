@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background: #dfffdd;
+        color: #fff;
+        font-family: Noto Sans, sans-serif;
+        text-align: center;
+      }
+      #content {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        gap: 10px;
+        max-width: 960px;
+        margin: 0 auto;
+        position: relative;
+      }
+      #content > * {
+        background: #02b3ff;
+        padding: 30px;
+      }
+
+      header {
+        grid-column: 1 / 13;
+      }
+      main {
+        grid-column: 4 / 13;
+        grid-row: 2 / 4;
+      }
+      aside {
+        grid-column: 1 / 4;
+      }
+      section {
+        grid-column: 1 / 13;
+        grid-row: 4 / 6;
+      }
+      nav {
+        grid-column: 1 / 4;
+      }
+      footer {
+        grid-column: 1 / 13;
+      }
+      #grid {
+        display: grid;
+        position: absolute;
+        top: 0;
+        left: 0;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(100%, auto);
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        padding: 0;
+        display: none;
+      }
+      #grid p {
+        border: solid 1px;
+        background: #000;
+        margin: 0;
+        opacity: 0.2;
+      }
+      input:checked + #content #grid {
+        display: grid;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="checkbox" name="toggle-grid-overlay" />
+
+    <div id="content">
+      <div id="grid">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
+
+      <header>Header</header>
+      <main>Main</main>
+      <section>Section</section>
+      <aside>Aside</aside>
+      <nav>Nav</nav>
+      <footer>Footer</footer>
+    </div>
+  </body>
+</html>
