@@ -1,0 +1,57 @@
+.transition {
+  color: white;
+  width: 100px;
+  padding: 10px;
+  margin: 10px;
+  transition-property: margin-left;
+  transition-duration: 2s;
+}
+
+.ease {
+  background: red;
+  transition-timing-function: ease;
+}
+
+.ease-in {
+  background: green;
+  transition-timing-function: ease-in;
+}
+
+.ease-out {
+  background: blue;
+  transition-timing-function: ease-out;
+}
+
+.steps {
+  background: orange;
+  transition-timing-function: steps(10);
+}
+
+.bezier {
+  background: purple;
+  transition-timing-function: cubic-bezier(0.7, 0.1, 0.5, 0.9);
+}
+
+.multiple-transition {
+  color: white;
+  width: 100px;
+  height: 22px;
+  padding: 10px;
+  margin: 10px;
+  transition: margin-left 2s cubic-bezier(0.7, 0.1, 0.5, 0.9), width 2s, height 2s, background 2s;
+}
+
+.multiple {
+  background: black;
+}
+
+.container:hover .multiple-transition {
+  margin-left: 500px;
+  width: 400px;
+  height: 200px;
+  background: gray;
+}
+
+.container:hover .transition {
+  margin-left: 500px;
+}

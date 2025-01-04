@@ -1,0 +1,42 @@
+.polaloid-card {
+  display: inline-block;
+  margin: 20px;
+  background: #d0dfd3;
+  padding: 10px;
+}
+
+.polaloid-card:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.polaloid-card:nth-child(odd) {
+  transform: rotate(-5deg);
+}
+
+.polaloid-card:nth-child(even)::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 60%;
+  height: 25px;
+  background: rgba(100, 100, 120, 0.3);
+  transform: translate(-30px, -5px) rotate(-16deg);
+}
+
+.polaloid-card:nth-child(odd)::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 60%;
+  height: 25px;
+  background: rgba(100, 100, 120, 0.3);
+  transform: translate(100%, -5px) rotate(16deg);
+}
+
+.polaloid-card-caption {
+  font-family: 'Marker Felt', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  margin-top: 10px;
+}
