@@ -1,0 +1,114 @@
+body {
+  background: lightgray;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Raleway', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.button {
+  border: 0;
+  font-size: 1.5rem;
+  padding: 15px 25px;
+  margin: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.first {
+  background: #cc9494;
+  overflow: hidden;
+}
+
+.first::before {
+  content: '';
+  background: white;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: left 0.25s;
+}
+
+.first:hover::before {
+  left: 0;
+}
+
+.first span {
+  position: relative;
+  z-index: 2;
+}
+
+.second {
+  background: #94cca6;
+  overflow: hidden;
+}
+
+.second::before {
+  content: '';
+  background: white;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: right 0.25s;
+}
+
+.second:hover::before {
+  right: 0;
+}
+
+.second span {
+  position: relative;
+  z-index: 2;
+}
+
+.third {
+  background: #bd9fe0;
+  overflow: hidden;
+}
+
+.third::before {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-top: white solid 3px;
+  border-left: white solid 3px;
+  top: 0;
+  left: 0;
+  transition: width 0.25s, height 0.25s;
+}
+
+.third::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-bottom: 3px white solid;
+  border-right: 3px white solid;
+  bottom: 0;
+  right: 0;
+  transition: width 0.25s, height 0.25s;
+}
+
+.third:hover::before,
+.third:hover::after {
+  width: 100%;
+  height: 100%;
+}
