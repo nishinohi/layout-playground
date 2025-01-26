@@ -1,6 +1,6 @@
 body {
   height: 100%;
-  background-color: lightblue;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,23 +9,355 @@ body {
 
 h1 {
   color: slategray;
+  font-size: 1.5rem;
 }
 
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: red;
+.box1 {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(180, 226, 167);
   animation-name: rotate;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
-.box:hover {
+.box1:hover {
   animation-play-state: paused;
 }
 
 @keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.box2 {
+  width: 50px;
+  height: 50px;
+  border: 5px solid lightgray;
+  border-top: 5px solid lightseagreen;
+  border-radius: 999px;
+  animation: rotate-circle 1s linear infinite;
+}
+
+@keyframes rotate-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.box3 {
+  width: 50px;
+  height: 50px;
+  background: lightskyblue;
+  border-radius: 999px;
+  animation: grow 1s ease-in-out infinite alternate;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dot-container {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: lightskyblue;
+  border-radius: 999px;
+  margin: 0 5px;
+  animation: grow-dot 0.8s infinite alternate;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes grow-dot {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.heartbit-loader {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  animation: heartbit 1s ease infinite;
+}
+
+.heartbit-loader:hover {
+  animation-duration: 0.5s;
+}
+
+.heartbit-loader::before {
+  content: '';
+  position: absolute;
+  background: lightcoral;
+  border-radius: 20px 0 5px 20px;
+  top: 25px;
+  left: 0;
+  width: 60px;
+  height: 35px;
+}
+
+.heartbit-loader::after {
+  content: '';
+  position: absolute;
+  background: lightcoral;
+  border-radius: 20px 20px 0 0;
+  top: 0px;
+  right: 0px;
+  width: 35px;
+  height: 40px;
+}
+
+@keyframes heartbit {
+  0% {
+    transform: scale(0.8) rotate(45deg);
+  }
+  50% {
+    transform: scale(1) rotate(45deg);
+  }
+  100% {
+    transform: scale(0.8) rotate(45deg);
+  }
+}
+
+.wave-container {
+  position: relative;
+  height: 100px;
+}
+
+.wave {
+  margin-top: 50px;
+  position: absolute;
+  top: -10px;
+  border-radius: 99px;
+  width: 10px;
+  height: 20px;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.wave:nth-child(1) {
+  left: -40px;
+}
+.wave:nth-child(2) {
+  left: -20px;
+  animation-delay: 0.15s;
+}
+.wave:nth-child(3) {
+  left: 0px;
+  animation-delay: 0.3s;
+}
+.wave:nth-child(4) {
+  left: 20px;
+  animation-delay: 0.45s;
+}
+.wave:nth-child(5) {
+  left: 40px;
+  animation-delay: 0.6s;
+}
+
+@keyframes wave {
+  0% {
+    height: 20px;
+    transform: translateY(0);
+    background: lightskyblue;
+  }
+  25% {
+    height: 80px;
+    transform: translateY(-30px);
+    background: rgb(172, 78, 172);
+  }
+  50% {
+    height: 20px;
+    transform: translateY(0px);
+    background: lightskyblue;
+  }
+  100% {
+    height: 20px;
+    transform: translateY(0px);
+    background: lightskyblue;
+  }
+}
+
+.colorful-center-loader-container {
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.colorful-loader {
+  position: absolute;
+  width: 12.5px;
+  height: 12.5px;
+  --main-bg-color: rgb(115, 62, 141);
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.colorful-loader:nth-child(1) {
+  top: 0;
+  left: 0;
+  animation-name: colorful-center-1;
+}
+
+@keyframes colorful-center-1 {
+  0% {
+    background-color: var(--main-bg-color);
+    border-radius: 0px;
+  }
+  100% {
+    transform: translate(-12.5px, -12.5px);
+    background-color: rgb(222, 222, 84);
+    border-radius: 6px;
+  }
+}
+
+.colorful-loader:nth-child(2) {
+  top: 0;
+  right: 0;
+  animation-name: colorful-center-2;
+}
+
+@keyframes colorful-center-2 {
+  0% {
+    background-color: var(--main-bg-color);
+    border-radius: 0px;
+  }
+  100% {
+    transform: translate(12.5px, -12.5px);
+    background-color: rgb(84, 222, 139);
+    border-radius: 6px;
+  }
+}
+
+.colorful-loader:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  animation-name: colorful-center-3;
+}
+
+@keyframes colorful-center-3 {
+  0% {
+    background-color: var(--main-bg-color);
+    border-radius: 0px;
+  }
+  100% {
+    transform: translate(-12.5px, 12.5px);
+    background-color: rgb(84, 100, 222);
+    border-radius: 6px;
+  }
+}
+
+.colorful-loader:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  animation-name: colorful-center-4;
+}
+
+@keyframes colorful-center-4 {
+  0% {
+    background-color: var(--main-bg-color);
+    border-radius: 0px;
+  }
+  100% {
+    transform: translate(12.5px, 12.5px);
+    background-color: rgb(222, 84, 84);
+    border-radius: 6px;
+  }
+}
+
+.rotating-spiner {
+  position: relative;
+  margin: 20px;
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  animation: rotating-spiner 1s ease-in-out infinite;
+}
+
+@keyframes rotating-spiner {
+  0% {
+    transform: rotate(0deg) scale(1);
+    border-radius: 12.5px;
+  }
+  50% {
+    transform: rotate(-180deg) scale(2);
+    border-radius: 0px;
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+    border-radius: 12.5px;
+  }
+}
+
+.clock {
+  position: relative;
+  margin: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  border: 3px solid gray;
+}
+
+.clock::before {
+  content: '';
+  position: absolute;
+  background-color: gray;
+  width: 3px;
+  border-radius: 10px 10px 0 0;
+  height: 15px;
+  left: calc(50% - 1.5px);
+  top: calc(50% - 15px);
+  transform-origin: 1.5px 15px;
+  animation: clock 3s linear infinite;
+}
+
+.clock::after {
+  content: '';
+  position: absolute;
+  background-color: gray;
+  width: 3px;
+  border-radius: 10px 10px 0 0;
+  height: 20px;
+  left: calc(50% - 1.5px);
+  top: calc(50% - 20px);
+  transform-origin: 1.5px 20px;
+  animation: clock 1s linear infinite;
+}
+
+@keyframes clock {
   0% {
     transform: rotate(0deg);
   }
