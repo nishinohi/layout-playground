@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>フェードイン・フェードアウト with display 切替</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const noStartingSquare = document.querySelector('.no-starting-style')
+        document.querySelector('.toggle-square-no-starting-style').addEventListener('click', () => {
+          noStartingSquare.classList.toggle('hide')
+        })
+
+        const startingSquare = document.querySelector('.starting-style')
+        document.querySelector('.toggle-square-starting-style').addEventListener('click', () => {
+          startingSquare.classList.toggle('hide')
+        })
+
+        const withoutStartingSquare = document.querySelector('.without-starting-style')
+        const toggleButton = document.querySelector('.toggle-square')
+
+        function fadeIn() {
+          withoutStartingSquare.style.display = 'block'
+          // ブラウザに display 変更を認識させるために reflow を発生させる
+          withoutStartingSquare.offsetHeight
+          withoutStartingSquare.classList.add('visible')
+        }
+
+        function fadeOut() {
+          withoutStartingSquare.classList.remove('visible')
+        }
+
+        // transitionend イベントで opacity の変化が終わったら、visible クラスが付いていなければ display を none に設定
+        withoutStartingSquare.addEventListener('transitionend', (e) => {
+          if (e.propertyName === 'opacity' && !withoutStartingSquare.classList.contains('visible')) {
+            withoutStartingSquare.style.display = 'none'
+          }
+        })
+
+        // 初回表示時（必要に応じて）またはボタン操作での切り替え
+        toggleButton.addEventListener('click', () => {
+          if (withoutStartingSquare.classList.contains('visible')) {
+            fadeOut()
+          } else {
+            fadeIn()
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>no starting style</h1>
+      <div class="square no-starting-style"></div>
+      <button class="toggle-square-no-starting-style">Toggle Square</button>
+    </div>
+    <div class="container">
+      <h1>with starting style</h1>
+      <div class="square starting-style"></div>
+      <button class="toggle-square-starting-style">Toggle Square</button>
+    </div>
+    <div class="container">
+      <h1>without @starting-style</h1>
+      <div class="square without-starting-style"></div>
+      <button class="toggle-square">Toggle Square</button>
+    </div>
+  </body>
+</html>

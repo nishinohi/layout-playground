@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background-image: linear-gradient(purple, yellow);
+}
+
+.no-starting-style {
+  transition: display 2s allow-discrete, opacity 2s;
+}
+
+.starting-style {
+  transition: display 2s allow-discrete, opacity 2s;
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.square.hide {
+  display: none;
+  opacity: 0;
+}
+
+/* 初期状態は display: none; にしておく */
+.without-starting-style {
+  display: none;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+/* visible クラスが付与されると opacity が 1 になり、フェードインする */
+.square.visible {
+  opacity: 1;
+}
