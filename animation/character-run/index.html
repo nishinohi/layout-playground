@@ -6,7 +6,17 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Animations Exercise</title>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {});
+      document.addEventListener('DOMContentLoaded', () => {
+        const character = document.querySelector('.character')
+        document.addEventListener('keydown', (e) => {
+          if (e.code === 'Space' && !character.classList.contains('jump')) {
+            character.classList.add('jump')
+          }
+        })
+        character.addEventListener('animationend', () => {
+          character.classList.remove('jump')
+        })
+      })
     </script>
   </head>
   <body>
