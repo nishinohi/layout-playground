@@ -100,4 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
   infiniteInput.checked = animation.effect.getComputedTiming().iterations === Infinity
+
+  const currentTimeInput = document.getElementById('currentTimeInput')
+  currentTimeInput.value = animation.currentTime
+  currentTimeInput.addEventListener('input', (e) => {
+    animation.currentTime = +e.target.value
+  })
 })
