@@ -10,6 +10,7 @@
   <body>
     <div class="square"></div>
     <div class="controls">
+      <button class="button logInfo">log info</button>
       <div class="section">
         <h1>Animation Object(DVD Player)</h1>
         <button class="button play">play</button>
@@ -21,13 +22,13 @@
         <br />
         <label for="playbackRateInput">play back rate</label>
         <input type="range" id="playbackRateInput" step="0.2" min="0" max="2" />
-        <output id="playbackRateInputValue" for="playbackRateInput">1</output>
+        <output id="playbackRateInputValue" for="playbackRateInput"></output>
       </div>
       <div class="section">
         <h1>Animation Effect (Keyframe Effect, DVD)</h1>
         <label for="durationInput">duration</label>
         <input type="range" step="500" min="0" max="10000" id="durationInput" type="text" />
-        <output id="durationInputValue" for="durationInput">5000</output>
+        <output id="durationInputValue" for="durationInput"></output>
         <br /><br />
         <label id="infiniteInputValue" for="infiniteInput">infinite</label>
         <input type="checkbox" id="infiniteInput" />

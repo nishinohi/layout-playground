@@ -61,6 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
           },
         ])
       }
+      if (button.classList.contains('logInfo')) {
+        console.info('playState', animation.playState)
+        console.info('currentTime', animation.currentTime)
+        console.info('startTime', animation.startTime)
+        console.info('playbackRate', animation.playbackRate)
+        console.info('keyframes', animation.effect.getKeyframes())
+        console.info('timing', animation.effect.getTiming())
+        console.info('computed timing', animation.effect.getComputedTiming())
+      }
     })
   })
 
@@ -70,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     animation.updatePlaybackRate(e.target.value)
     playbackRateInputValue.value = e.target.value
   })
+  playbackRateInput.value = animation.playbackRate
+  playbackRateInputValue.value = animation.playbackRate
 
   const durationInput = document.getElementById('durationInput')
   const durationInputValue = document.getElementById('durationInputValue')
@@ -79,11 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     durationInputValue.value = e.target.value
   })
+  durationInput.value = animation.effect.getComputedTiming().duration
+  durationInputValue.value = animation.effect.getComputedTiming().duration
+
   const infiniteInput = document.getElementById('infiniteInput')
-  const infiniteInputValue = document.getElementById('infiniteInputValue')
   infiniteInput.addEventListener('change', (e) => {
     animation.effect.updateTiming({
       iterations: e.target.checked ? Infinity : 1,
     })
   })
+  infiniteInput.checked = animation.effect.getComputedTiming().iterations === Infinity
 })
