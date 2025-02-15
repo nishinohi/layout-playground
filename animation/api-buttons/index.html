@@ -23,6 +23,17 @@
         <input type="range" id="playbackRateInput" step="0.2" min="0" max="2" />
         <output id="playbackRateInputValue" for="playbackRateInput">1</output>
       </div>
+      <div class="section">
+        <h1>Animation Effect (Keyframe Effect, DVD)</h1>
+        <label for="durationInput">duration</label>
+        <input type="range" step="500" min="0" max="10000" id="durationInput" type="text" />
+        <output id="durationInputValue" for="durationInput">5000</output>
+        <br /><br />
+        <label id="infiniteInputValue" for="infiniteInput">infinite</label>
+        <input type="checkbox" id="infiniteInput" />
+        <br /><br />
+        <button class="button changeAnimation">change animation</button>
+      </div>
     </div>
   </body>
 </html>

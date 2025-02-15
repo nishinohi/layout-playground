@@ -46,14 +46,44 @@ document.addEventListener('DOMContentLoaded', () => {
         console.info('finish')
         animation.finish()
       }
+      if (button.classList.contains('changeAnimation')) {
+        animation.effect.setKeyframes([
+          {
+            transform: 'translateY(0px)',
+          },
+          {
+            backgroundColor: 'green',
+            offset: 0.8,
+          },
+          {
+            transform: 'translateY(calc(100vh - 70px)) rotate(360deg)',
+            backgroundColor: 'lightblue',
+          },
+        ])
+      }
     })
   })
 
   const playbackRateInput = document.getElementById('playbackRateInput')
   const playbackRateInputValue = document.getElementById('playbackRateInputValue')
   playbackRateInput.addEventListener('input', (e) => {
-    console.info(e.target.value)
     animation.updatePlaybackRate(e.target.value)
     playbackRateInputValue.value = e.target.value
+  })
+
+  const durationInput = document.getElementById('durationInput')
+  const durationInputValue = document.getElementById('durationInputValue')
+  durationInput.addEventListener('input', (e) => {
+    animation.effect.updateTiming({
+      duration: +e.target.value,
+    })
+    durationInputValue.value = e.target.value
+  })
+  const infiniteInput = document.getElementById('infiniteInput')
+  const infiniteInputValue = document.getElementById('infiniteInputValue')
+  infiniteInput.addEventListener('change', (e) => {
+    animation.effect.updateTiming({
+      iterations: e.target.checked ? Infinity : 1,
+    })
   })
 })
