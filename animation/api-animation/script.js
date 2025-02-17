@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const character = document.querySelector('.character')
   const street = document.querySelector('.street')
   const background = document.querySelector('.background')
+  const carWrapper = document.querySelector('.car-wrapper')
   const foreground = document.querySelector('.foreground')
 
   const characterAnimation = character.animate(
@@ -70,12 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const runFaster = () => {
     document.getAnimations().forEach((animation) => {
+      if (animation.id === 'car') return
       animation.playbackRate = animation.playbackRate < 3 ? animation.playbackRate + 0.1 : 3
     })
   }
 
   const runSlower = () => {
     document.getAnimations().forEach((animation) => {
+      if (animation.id === 'car') return
       animation.playbackRate = animation.playbackRate > 0.5 ? animation.playbackRate - 0.1 : 0.5
     })
   }
@@ -93,6 +96,39 @@ document.addEventListener('DOMContentLoaded', () => {
       animation.play()
     })
   }
+
+  const addNewCar = () => {
+    if (streetAnimation.playState !== 'running' || document.querySelector('.car') !== null) {
+      setTimeout(addNewCar, 1000 + Math.random() * 3000)
+      return
+    }
+    const car = document.createElement('div')
+    carWrapper.appendChild(car)
+    car.classList.add('car')
+    const carAnimation = car.animate(
+      [
+        {
+          transform: 'translateX(-100vw)',
+        },
+        {
+          transform: 'translateX(100vw)',
+        },
+      ],
+      {
+        id: 'car',
+        duration: 500 + Math.random() * 2000,
+        iterations: 1,
+        easing: 'linear',
+      }
+    )
+    carAnimation.addEventListener('finish', () => {
+      carWrapper.removeChild(car)
+    })
+    // ランダムに車を再度生成
+    setTimeout(addNewCar, 1000 + Math.random() * 5000)
+  }
+
+  addNewCar()
 
   const scaleShadow = () => {
     const shadow = document.querySelector('.shadow')
