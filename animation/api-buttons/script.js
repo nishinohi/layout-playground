@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector('.square')
-  const element3 = document.querySelector('.square-3')
   const animation = element.animate(
     [
       {
@@ -24,27 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
       iterationComposite: 'accumulate',
       delay: 0,
       fill: 'both',
-      timeline: document.timeline,
-    }
-  )
-
-  element3.animate(
-    [
-      {
-        transform: 'translateY(0)',
-        backgroundColor: 'green',
-      },
-      {
-        transform: 'translateY(70px)',
-        backgroundColor: 'lightblue',
-      },
-    ],
-    {
-      duration: 1000,
-      direction: 'alternate',
-      iterations: Infinity,
-      easing: 'ease-in-out',
-      delay: 0,
       timeline: document.timeline,
     }
   )
@@ -161,29 +139,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animation.finished.then(() => {
     console.info('playState after finished', animation.playState)
-  })
-
-  const animations = document.getAnimations()
-  const speedButtons = document.querySelectorAll('.speedButton')
-  speedButtons.forEach((button) => {
-    if (button.classList.contains('decrease')) {
-      button.addEventListener('click', () => {
-        animations.forEach((animation) => {
-          animation.playbackRate
-          animation.updatePlaybackRate(
-            animation.playbackRate > 0 ? animation.playbackRate - 0.1 : animation.playbackRate
-          )
-        })
-      })
-    }
-    if (button.classList.contains('increase')) {
-      button.addEventListener('click', () => {
-        animations.forEach((animation) => {
-          animation.updatePlaybackRate(
-            animation.playbackRate < 2 ? animation.playbackRate + 0.1 : animation.playbackRate
-          )
-        })
-      })
-    }
   })
 })
