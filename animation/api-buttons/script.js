@@ -106,4 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
   currentTimeInput.addEventListener('input', (e) => {
     animation.currentTime = +e.target.value
   })
+
+  const startTimeInput = document.getElementById('startTimeInput')
+  startTimeInput.value = animation.startTime ?? 0
+  startTimeInput.addEventListener('input', (e) => {
+    animation.startTime = +e.target.value
+  })
 })
