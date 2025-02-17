@@ -17,6 +17,19 @@ body {
   background-color: gold;
 }
 
+.square-2 {
+  width: 30px;
+  height: 30px;
+  background-color: purple;
+  animation: bounce 1s infinite alternate ease-in-out;
+}
+
+.square-3 {
+  width: 70px;
+  height: 70px;
+  animation: bounce 1s infinite alternate ease-in-out;
+}
+
 .controls {
   margin-top: 40px;
   padding: 10px;
@@ -29,4 +42,13 @@ body {
 
 .controls .section h1 {
   margin: 0 0 20px;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(70%);
+  }
 }
