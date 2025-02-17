@@ -94,6 +94,30 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  const scaleShadow = () => {
+    const shadow = document.querySelector('.shadow')
+    const { duration, iterations, direction, easing } = character
+      .getAnimations()
+      .find((animation) => animation.id === 'jump')
+      .effect.getComputedTiming()
+    shadow.animate(
+      [
+        {
+          transform: 'scale(1)',
+        },
+        {
+          transform: 'scale(1.2)',
+        },
+      ],
+      {
+        duration,
+        iterations,
+        direction,
+        easing,
+      }
+    )
+  }
+
   async function jump() {
     // streetAnimation が停止中はアニメーションの停止中とみなしジャンプしない
     if (streetAnimation.playState !== 'running') return
@@ -117,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         easing: 'ease-in-out',
       }
     )
+    scaleShadow()
     await jumpAnimation.finished
     characterAnimation.play()
     character.classList.remove('jump')
