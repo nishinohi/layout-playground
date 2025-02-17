@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
     {
       duration: 3000,
-      iterations: Infinity,
+      iterations: 1,
       direction: 'alternate',
       easing: 'ease-in-out',
-      composite: 'add',
+      composite: 'replace',
       iterationComposite: 'accumulate',
       delay: 0,
       fill: 'both',
@@ -139,5 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animation.finished.then(() => {
     console.info('playState after finished', animation.playState)
+  })
+
+  animation.addEventListener('finish', () => {
+    animation.commitStyles()
+    animation.cancel()
   })
 })
