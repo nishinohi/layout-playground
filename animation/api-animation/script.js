@@ -68,6 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   )
 
+  const runFaster = () => {
+    document.getAnimations().forEach((animation) => {
+      animation.playbackRate = animation.playbackRate < 3 ? animation.playbackRate + 0.1 : 3
+    })
+  }
+
+  const runSlower = () => {
+    document.getAnimations().forEach((animation) => {
+      animation.playbackRate = animation.playbackRate > 0.5 ? animation.playbackRate - 0.1 : 0.5
+    })
+  }
+
+  setInterval(() => {
+    if (streetAnimation.playState === 'running') runSlower()
+  }, 5000)
+
   const togglePlayState = () => {
     document.getAnimations().forEach((animation) => {
       if (animation.playState === 'running') {
@@ -112,8 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
         jump()
         break
       case 'ArrowRight':
+        runFaster()
         break
       case 'ArrowLeft':
+        runSlower()
         break
       case 'Space':
         togglePlayState()
