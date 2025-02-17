@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
     {
       duration: 3000,
-      iterations: Infinity,
+      iterations: 1,
       direction: 'alternate',
       easing: 'ease-in-out',
       composite: 'add',
@@ -26,25 +26,38 @@ document.addEventListener('DOMContentLoaded', () => {
       timeline: document.timeline,
     }
   )
-  animation.pause()
 
   document.querySelectorAll('.button').forEach((button) => {
     button.addEventListener('click', () => {
       if (button.classList.contains('play')) {
         animation.play()
+        animation.ready.then(() => {
+          console.info('playState after play', animation.playState)
+        })
       }
       if (button.classList.contains('pause')) {
         animation.pause()
+        animation.ready.then(() => {
+          console.info('playState after pause', animation.playState)
+        })
       }
       if (button.classList.contains('cancel')) {
         animation.cancel()
+        animation.ready.then(() => {
+          console.info('playState after cancel', animation.playState)
+        })
       }
       if (button.classList.contains('reverse')) {
         animation.reverse()
+        animation.ready.then(() => {
+          console.info('playState after reverse', animation.playState)
+        })
       }
       if (button.classList.contains('finish')) {
-        console.info('finish')
         animation.finish()
+        animation.ready.then(() => {
+          console.info('playState after finish', animation.playState)
+        })
       }
       if (button.classList.contains('changeAnimation')) {
         animation.effect.setKeyframes([
@@ -112,4 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
   startTimeInput.addEventListener('input', (e) => {
     animation.startTime = +e.target.value
   })
+
+  animation.pause()
+  console.info('playState after pause', animation.playState)
+  console.info('pending after pause', animation.pending)
+  animation.ready.then(() => {
+    console.info('playState after ready', animation.playState)
+    console.info('pending after ready', animation.pending)
+  })
+  animation.play()
+  console.info('playState after play', animation.playState)
+  console.info('pending after play', animation.pending)
 })
