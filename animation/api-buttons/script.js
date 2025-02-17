@@ -136,4 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
   animation.play()
   console.info('playState after play', animation.playState)
   console.info('pending after play', animation.pending)
+
+  animation.finished.then(() => {
+    console.info('playState after finished', animation.playState)
+  })
 })
