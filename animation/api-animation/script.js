@@ -68,7 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   )
 
+  const togglePlayState = () => {
+    document.getAnimations().forEach((animation) => {
+      if (animation.playState === 'running') {
+        animation.pause()
+        return
+      }
+      animation.play()
+    })
+  }
+
   async function jump() {
+    // streetAnimation が停止中はアニメーションの停止中とみなしジャンプしない
+    if (streetAnimation.playState !== 'running') return
     if (character.getAnimations().find((animation) => animation.id === 'jump')) return
     characterAnimation.pause()
     character.classList.add('jump')
@@ -104,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'ArrowLeft':
         break
       case 'Space':
+        togglePlayState()
         break
-
       default:
         break
     }
