@@ -16,6 +16,28 @@ body {
   animation-timeline: --progress-view;
 }
 
+.container::before {
+  content: '';
+  display: block;
+  position: fixed;
+  height: 1px;
+  background-color: yellow;
+  width: 100%;
+  z-index: 1;
+  top: 10%;
+}
+
+.container::after {
+  content: '';
+  display: block;
+  position: fixed;
+  height: 1px;
+  background-color: yellow;
+  width: 100%;
+  z-index: 1;
+  bottom: 20%;
+}
+
 .content {
   padding: 30px;
   max-width: 700px;
@@ -39,7 +61,9 @@ body {
   background-color: rgb(209, 90, 213);
   animation: animateWidth linear both;
   animation-timeline: --progress-view;
-  animation-range: 100px calc(100% - 100px);
+  /* animation-range: 100px calc(100% - 100px); */
+  view-timeline-inset: 10% 20%;
+  animation-range: 50px normal;
 }
 
 @keyframes animateWidth {
