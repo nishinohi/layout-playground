@@ -25,7 +25,21 @@
   text-align: center;
   font-size: 3rem;
   margin: 0 0 4rem;
+  animation: servicesTitleAppear linear both;
+  animation-timeline: view();
 }
+
+@keyframes servicesTitleAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .services .cards {
   --card-height: 50vh;
   --card-gap: 20px;
@@ -36,11 +50,40 @@
   max-width: 1000px;
   padding: 0 30px;
   margin: 0 auto;
+  /* 高さが固定の card に padding-top を指定した事によるオーバーフロー分をここで補填する */
+  padding-bottom: calc(var(--card-gap) * var(--num));
 }
 
 .services .cards .cards-grid .card {
   height: var(--card-height);
+  position: sticky;
+  top: var(--header-height);
+  padding-top: calc(var(--card-gap) * var(--i));
 }
+
+.services .cards .cards-grid .card:nth-child(1) {
+  --i: 1;
+  --r: 1deg;
+  --b: var(--pink);
+}
+
+.services .cards .cards-grid .card:nth-child(2) {
+  --i: 2;
+  --r: -1deg;
+  --b: var(--green);
+}
+
+.services .cards .cards-grid .card:nth-child(3) {
+  --i: 3;
+  --r: -1deg;
+  --b: var(--blue);
+}
+
+.services .cards .cards-grid .card:nth-child(4) {
+  --i: 4;
+  --r: 0;
+}
+
 .services .cards .cards-grid .card-inner {
   background-color: rgb(11 9 14 / 85%);
   backdrop-filter: blur(6px);
@@ -83,7 +126,20 @@
   cursor: pointer;
   border-radius: 5px;
   transition: 0.3s;
+  animation: buttonGlow 2s infinite both;
 }
+
+@keyframes buttonGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 2px var(--pink);
+  }
+  50% {
+    background-color: rgba(235, 76, 76, 0.2);
+    box-shadow: 0 0 10px var(--pink);
+  }
+}
+
 .services .cards .cards-grid .card-inner button:hover {
   background-color: rgba(219, 76, 235, 0.365);
 }
