@@ -1,15 +1,31 @@
 .team {
   position: relative;
+  height: 360vh;
+  view-timeline: --team-view;
 }
 .team .team-inner {
   height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  overflow-x: hidden;
+  animation: teamBG linear both;
+  animation-timeline: --team-view;
+  animation-range: contain;
 }
-.team .team-inner .team-grid {
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+
+@keyframes teamBG {
+  0% {
+    background-color: var(--bg);
+  }
+  10%,
+  80% {
+    background-color: #0a120f;
+  }
+  100% {
+    background-color: var(--bg);
+  }
 }
+
 .team .team-inner h2 {
   position: absolute;
   text-align: center;
@@ -18,6 +34,37 @@
   right: 0;
   margin: auto;
   top: 10%;
+  animation: titleAppear linear both;
+  animation-timeline: --team-view;
+  animation-range: entry-crossing 20vh entry-crossing 40vh;
+}
+
+@keyframes titleAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team .team-inner .team-grid {
+  height: 100%;
+  width: 180vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  animation: moveTeamGrid linear forwards;
+  animation-timeline: --team-view;
+  animation-range: contain;
+}
+
+@keyframes moveTeamGrid {
+  to {
+    transform: translate(calc(-100% + 100vw));
+  }
 }
 
 .team .team-inner .team-grid .grid {
@@ -37,7 +84,22 @@
   padding: 60px 30px;
   text-align: center;
   border-radius: 3px;
+  animation: cardAppear linear both;
+  animation-timeline: --team-view;
+  animation-range: entry-crossing 60vh entry-crossing 80vh;
 }
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    clip-path: inset(10%);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+  }
+}
+
 .team .team-inner .team-grid .grid .card img {
   width: 90%;
   max-width: 130px;
@@ -46,7 +108,17 @@
   margin-bottom: 20px;
   outline: 1px solid var(--green);
   outline-offset: 3px;
+  animation: rotateTeamMemberImage linear both;
+  animation-timeline: --team-view;
+  animation-range: contain;
 }
+
+@keyframes rotateTeamMemberImage {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 .team .team-inner .team-grid .grid .card h3 {
   font-size: 1.4rem;
   margin: 0 0 15px;
