@@ -137,9 +137,41 @@
   bottom: 0;
   margin: auto;
 }
+
 .team .logo .cls-1 {
   fill: transparent;
   stroke: var(--green);
   stroke-width: 1px;
   opacity: 0.03;
+  stroke-dasharray: 1000px;
+  animation: neon 2s linear infinite, drawNeonLogo both linear;
+  animation-timeline: auto, --team-view;
+  animation-range: contain 0 contain 50%;
+}
+
+@keyframes drawNeonLogo {
+  0% {
+    stroke-dashoffset: 1000px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes neon {
+  0% {
+    opacity: 0.03;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  30% {
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.1;
+  }
 }
