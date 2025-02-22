@@ -44,6 +44,7 @@
   --card-height: 50vh;
   --card-gap: 20px;
   --num: 4;
+  view-timeline: --cards-view;
 }
 
 .services .cards .cards-grid {
@@ -70,13 +71,13 @@
 .services .cards .cards-grid .card:nth-child(2) {
   --i: 2;
   --r: -1deg;
-  --b: var(--green);
+  --b: cyan;
 }
 
 .services .cards .cards-grid .card:nth-child(3) {
   --i: 3;
   --r: -1deg;
-  --b: var(--blue);
+  --b: yellow;
 }
 
 .services .cards .cards-grid .card:nth-child(4) {
@@ -93,6 +94,20 @@
   display: flex;
   align-items: center;
   padding: 30px;
+  transform-origin: 50% 0;
+  view-timeline: --card-view;
+  animation: serviceCard forwards;
+  animation-timeline: --cards-view;
+  animation-range: exit-crossing calc(((var(--i) - 1) / var(--num)) * 100%) exit-crossing
+    calc(((var(--i)) / var(--num)) * 100%);
+}
+
+@keyframes serviceCard {
+  to {
+    border-color: var(--b);
+    transform: rotate(var(--r)) scale(calc(1 - ((var(--num) - var(--i)) * 0.05)));
+    filter: blur(calc((var(--num) - var(--i)) * 1px));
+  }
 }
 
 .services .cards .cards-grid .card-inner .left {
@@ -105,7 +120,22 @@
 .services .cards .cards-grid .card-inner img {
   width: 100%;
   object-fit: contain;
+  animation: cardImage both;
+  animation-timeline: --card-view;
 }
+
+@keyframes cardImage {
+  0% {
+    transform: scale(0);
+  }
+  10% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .services .cards .cards-grid .card-inner h3 {
   font-size: 2.4rem;
   line-height: 1.4;
