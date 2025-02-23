@@ -1,7 +1,7 @@
 body {
   background-color: var(--bg);
   color: #fff;
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
   font-optical-sizing: auto;
   padding: 0;
   margin: 0;
@@ -156,4 +156,27 @@ img {
 .grid-outer .main .description p {
   line-height: 1.8;
   margin-top: 40px;
+}
+
+::view-transition-old(root) {
+  animation: slideOut 0.5s ease forwards;
+}
+
+::view-transition-new(root) {
+  animation: slideIn 0.5s ease both;
+}
+
+@keyframes slideOut {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
