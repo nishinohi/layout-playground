@@ -38,6 +38,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
+  view-transition-name: header;
 }
 .header .header-inner {
   height: var(--header-height);
@@ -48,6 +49,10 @@ img {
 }
 .header.expanded .header-inner {
   justify-content: flex-start;
+}
+
+.header .title {
+  view-transition-name: header-title;
 }
 
 .header .title h1 {
@@ -164,6 +169,11 @@ img {
 
 ::view-transition-new(root) {
   animation: slideIn 0.5s ease both;
+}
+
+::view-transition-old(header),
+::view-transition-new(header) {
+  animation: none;
 }
 
 @keyframes slideOut {
