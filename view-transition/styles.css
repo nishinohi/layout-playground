@@ -171,22 +171,20 @@ img {
   animation: slideIn 0.5s ease both;
 }
 
-::view-transition-old(header),
-::view-transition-new(header) {
-  animation: none;
-}
-
 @keyframes slideOut {
   to {
-    transform: translateX(100%);
+    transform: translateX(-30px);
+    opacity: 0;
   }
 }
 
 @keyframes slideIn {
   from {
-    transform: translateX(-100%);
+    transform: translateX(30px);
+    opacity: 0;
   }
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
