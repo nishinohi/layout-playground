@@ -59,6 +59,7 @@ img {
   color: #c7d0e9;
   font-weight: 400;
 }
+
 .header .title h1 span {
   font-size: 1.7rem;
   color: #8696c8;
@@ -169,6 +170,23 @@ img {
 
 ::view-transition-new(root) {
   animation: slideIn 0.5s ease both;
+}
+
+::view-transition-old(header),
+::view-transition-old(header) {
+  animation: none;
+}
+
+::view-transition-old(image),
+::view-transition-new(image) {
+  animation: none;
+  mix-blend-mode: normal;
+  height: 100%;
+  overflow: hidden;
+}
+
+::view-transition-new(image) {
+  object-fit: cover;
 }
 
 @keyframes slideOut {

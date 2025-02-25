@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.style.viewTransitionName = 'grid'
   }
 
-  function displayGrid() {
+  async function displayGrid() {
     document.documentElement.scrollTop = 0
     grid.style.viewTransitionName = 'none'
     gridButton.style.display = 'none'
@@ -33,13 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = e.target.closest('.grid-item')
     if (!item || item.classList.contains('active')) return
 
+    const thumbnail = item.querySelector('img')
+    const largeImage = main.querySelector('img')
+
+    thumbnail.style.viewTransitionName = 'image'
+    largeImage.style.viewTransitionName = 'none'
+
     if (!document.startViewTransition) {
       expandImage(item)
       return
     }
-    document.startViewTransition(async () => {
+    const transition = document.startViewTransition(async () => {
+      thumbnail.style.viewTransitionName = 'none'
+      largeImage.style.viewTransitionName = 'image'
       expandImage(item)
     })
+
+    await transition.updateCallbackDone
+    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   })
 
   gridButton.addEventListener('click', async (e) => {
