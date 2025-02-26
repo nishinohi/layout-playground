@@ -39,6 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
       expandImage(item)
     })
 
+    await transition.ready
+
+    const { top, left, right, bottom } = item.getBoundingClientRect()
+    document.documentElement.animate(
+      [
+        {
+          clipPath: `inset(${top}px ${innerWidth - right}px ${innerHeight - bottom}px ${left}px)`,
+          filter: 'brightness(0.3)',
+        },
+        {
+          clipPath: 'inset(0%)',
+          filter: 'brightness(1)',
+        },
+      ],
+      {
+        duration: 300,
+        easing: 'ease',
+        pseudoElement: '::view-transition-new(root)',
+      }
+    )
+
     await transition.finished
 
     item.scrollIntoView({
@@ -53,8 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return
     }
 
+    document.documentElement.classList.add('back')
+
     const transition = document.startViewTransition(() => {
       displayGrid()
     })
+
+    await transition.finished
+
+    document.documentElement.classList.remove('back')
   })
 })

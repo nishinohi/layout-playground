@@ -163,8 +163,8 @@ img {
   margin-top: 40px;
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
+html:not(.back)::view-transition-old(root),
+html:not(.back)::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
