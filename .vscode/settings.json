@@ -1,4 +1,11 @@
 {
-    "css.validate": false,
-    "editor.formatOnSave": true
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "editor.formatOnSave": true,
+  "textlint.autoFixOnSave": true,
+  "textlint.languages": ["markdown"],
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  }
 }
